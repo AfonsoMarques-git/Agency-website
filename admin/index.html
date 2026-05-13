@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#04070d" />
+  <title>Admin · WEMOV Agency</title>
+  <link rel="icon" type="image/png" href="/assets/logo-wemov.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin/assets/admin.css" />
+</head>
+<body class="admin">
+  <div class="admin-grain" aria-hidden="true"></div>
+
+  <aside class="side">
+    <header class="side__head">
+      <img src="/assets/logo-wemov.png" alt="WEMOV Agency" class="side__logo--main" />
+    </header>
+
+    <nav class="side__nav" id="sideNav">
+      <a href="#/dashboard"     data-route="dashboard"    class="side__link"><i class="icon icon--grid"></i> Dashboard</a>
+      <a href="#/projects"      data-route="projects"     class="side__link"><i class="icon icon--film"></i> Projetos</a>
+      <a href="#/services"      data-route="services"     class="side__link"><i class="icon icon--cog"></i> Serviços</a>
+      <a href="#/team"          data-route="team"         class="side__link"><i class="icon icon--user"></i> Equipa</a>
+      <a href="#/testimonials"  data-route="testimonials" class="side__link"><i class="icon icon--quote"></i> Testemunhos</a>
+      <a href="#/episodes"      data-route="episodes"     class="side__link"><i class="icon icon--mic"></i> Episódios</a>
+      <a href="#/content"       data-route="content"      class="side__link"><i class="icon icon--text"></i> Conteúdo</a>
+      <a href="#/contact"       data-route="contact"      class="side__link"><i class="icon icon--mail"></i> Contacto</a>
+      <a href="#/media"         data-route="media"        class="side__link"><i class="icon icon--image"></i> Media</a>
+      <a href="#/settings"      data-route="settings"     class="side__link"><i class="icon icon--lock"></i> Definições</a>
+    </nav>
+
+    <footer class="side__foot">
+      <a href="/" target="_blank" rel="noopener" class="side__view">Ver site →</a>
+      <button id="logoutBtn" class="side__logout">Terminar sessão</button>
+    </footer>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <span class="topbar__crumb" id="crumb">Dashboard</span>
+        <h1 class="topbar__title" id="pageTitle">Visão geral</h1>
+      </div>
+      <div class="topbar__actions" id="topbarActions"></div>
+    </header>
+
+    <section class="view" id="view"><div class="loading">A carregar…</div></section>
+  </main>
+
+  <!-- Drawer / slide-over -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" data-close></div>
+    <div class="drawer__panel">
+      <header class="drawer__head">
+        <h2 id="drawerTitle">Editar</h2>
+        <button class="drawer__close" data-close aria-label="Fechar">×</button>
+      </header>
+      <div class="drawer__body" id="drawerBody"></div>
+      <footer class="drawer__foot">
+        <button class="btn btn--ghost" data-close>Cancelar</button>
+        <button class="btn btn--primary" id="drawerSave">Guardar</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Confirm modal -->
+  <div class="modal" id="confirm" aria-hidden="true">
+    <div class="modal__backdrop" data-confirm-close></div>
+    <div class="modal__panel">
+      <h3 id="confirmTitle">Confirmar?</h3>
+      <p id="confirmMsg">Esta ação não pode ser desfeita.</p>
+      <div class="modal__actions">
+        <button class="btn btn--ghost" data-confirm-close>Cancelar</button>
+        <button class="btn btn--danger" id="confirmOk">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toasts -->
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <script src="/admin/assets/admin.js" defer></script>
+</body>
+</html>

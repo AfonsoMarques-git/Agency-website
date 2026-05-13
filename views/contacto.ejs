@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: 'Contacto — WEMOV Agency',
+    description: 'Fale connosco. Conte-nos o desafio ou apenas o ponto de partida. Respondemos em 24h úteis.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="contacto" data-page-enter>
+
+      <section class="page-hero">
+        <div class="page-hero__inner">
+          <div class="page-hero__eyebrow">
+            <div class="page-hero__crumb">
+              <a href="/">WEMOV</a> <span>/</span> Contacto
+            </div>
+            <h1 class="page-hero__title" data-page-title>
+              <span class="line"><span class="reveal"><%- data.settings.contacto_title_line_1 %></span></span>
+              <span class="line"><span class="reveal"><%- data.settings.contacto_title_line_2 %></span></span>
+              <span class="line"><span class="reveal"><%- data.settings.contacto_title_line_3 %></span></span>
+            </h1>
+          </div>
+          <p class="page-hero__lede reveal">
+            <%= data.settings.contacto_lede %>
+          </p>
+        </div>
+      </section>
+
+      <section class="contact">
+        <div class="contact__inner">
+          <aside class="contact__side">
+            <span class="section-tag"><i></i> &mdash; Diga olá</span>
+
+            <div class="contact__info">
+              <div>
+                <span>Email</span>
+                <a href="mailto:<%= data.settings.contact_email %>" data-cursor="pointer"><%= data.settings.contact_email %></a>
+              </div>
+              <div>
+                <span>Telefone</span>
+                <a href="tel:<%= data.settings.contact_phone_tel %>" data-cursor="pointer"><%= data.settings.contact_phone_label %></a>
+              </div>
+              <div>
+                <span>Estúdio</span>
+                <p><%- data.settings.contact_address %></p>
+              </div>
+              <div>
+                <span>Horário</span>
+                <p><%= data.settings.contact_hours %></p>
+              </div>
+            </div>
+
+            <div class="contact__socials">
+              <% if (data.settings.social_instagram) { %>
+                <a href="<%= data.settings.social_instagram %>" target="_blank" rel="noopener" data-cursor="pointer">Instagram</a>
+              <% } %>
+              <% if (data.settings.social_youtube) { %>
+                <a href="<%= data.settings.social_youtube %>" target="_blank" rel="noopener" data-cursor="pointer">YouTube</a>
+              <% } %>
+              <% if (data.settings.social_tiktok) { %>
+                <a href="<%= data.settings.social_tiktok %>" target="_blank" rel="noopener" data-cursor="pointer">TikTok</a>
+              <% } %>
+              <% if (data.settings.social_facebook) { %>
+                <a href="<%= data.settings.social_facebook %>" target="_blank" rel="noopener" data-cursor="pointer">Facebook</a>
+              <% } %>
+            </div>
+          </aside>
+
+          <form class="contact__form" id="contactForm" action="/api/public/contact" method="post" novalidate>
+            <div class="field">
+              <label for="f-name"><span>01</span> O seu nome</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Maria Sá" />
+            </div>
+            <div class="field">
+              <label for="f-email"><span>02</span> Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="maria@suamarca.pt" />
+            </div>
+            <div class="field">
+              <label for="f-company"><span>03</span> Empresa <i>(opcional)</i></label>
+              <input id="f-company" name="company" type="text" placeholder="Nome da marca / projeto" />
+            </div>
+            <div class="field">
+              <label for="f-budget"><span>04</span> Orçamento estimado <i>(opcional)</i></label>
+              <input id="f-budget" name="budget" type="text" placeholder="€ 5.000 — € 25.000" />
+            </div>
+            <div class="field field--full">
+              <label><span>05</span> Que serviço o traz cá?</label>
+              <div class="chips">
+                <input type="checkbox" id="s1" name="services" value="Produção Audiovisual" /><label for="s1">Produção Audiovisual</label>
+                <input type="checkbox" id="s2" name="services" value="Branding" /><label for="s2">Branding</label>
+                <input type="checkbox" id="s3" name="services" value="Conteúdo Social" /><label for="s3">Conteúdo Social</label>
+                <input type="checkbox" id="s4" name="services" value="Podcast" /><label for="s4">Podcast</label>
+                <input type="checkbox" id="s5" name="services" value="Fotografia" /><label for="s5">Fotografia</label>
+                <input type="checkbox" id="s6" name="services" value="Consultoria" /><label for="s6">Consultoria</label>
+              </div>
+            </div>
+            <div class="field field--full">
+              <label for="f-msg"><span>06</span> Conte-nos a ideia</label>
+              <textarea id="f-msg" name="message" rows="4" required placeholder="Estamos a preparar uma campanha de marca para…"></textarea>
+            </div>
+            <button class="btn btn--primary btn--lg" type="submit" data-cursor="enviar" data-cursor-label="Enviar">
+              <span>Enviar mensagem</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="contact__note">Ao enviar concorda com a nossa política de privacidade.</p>
+          </form>
+        </div>
+      </section>
+
+      <section class="beyond" aria-hidden="true">
+        <div class="beyond__track">
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

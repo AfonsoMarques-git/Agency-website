@@ -1,0 +1,27 @@
+<footer class="foot">
+  <div class="foot__top">
+    <a href="#top" class="foot__back" data-cursor="pointer">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      <span>Voltar ao topo</span>
+    </a>
+    <span class="foot__tag"><%= data.settings.brand_tagline %> &mdash; <%= data.settings.brand_location %></span>
+  </div>
+
+  <div class="foot__mark" aria-hidden="true">WEMOV</div>
+
+  <div class="foot__bottom">
+    <div>
+      <span><%= data.settings.footer_copyright %></span>
+      <span><%= data.settings.footer_rights %></span>
+    </div>
+    <div class="foot__links">
+      <a href="/privacidade" data-cursor="pointer">Política de Privacidade</a>
+    </div>
+    <div class="foot__credits">
+      <span><%= data.settings.footer_credits %></span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
+<script src="/js/transitions.js" defer></script>

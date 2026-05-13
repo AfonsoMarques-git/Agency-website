@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: (data.service.title||'') + ' — WEMOV Agency',
+    description: data.service.description
+      ? data.service.description.slice(0,160)
+      : 'Serviço de ' + (data.service.title||'') + ' · WEMOV Agency em Braga.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="servico" data-page-enter>
+
+      <!-- ========== PAGE HERO ========== -->
+      <section class="page-hero">
+        <div class="page-hero__inner">
+          <div class="page-hero__eyebrow">
+            <div class="page-hero__crumb">
+              <a href="/">WEMOV</a> <span>/</span>
+              <a href="/servicos">Serviços</a> <span>/</span>
+              <span><%= data.service.number %></span>
+            </div>
+            <h1 class="page-hero__title" data-page-title>
+              <% const words = (data.service.title||'').split(' '); %>
+              <% if (words.length > 2) { %>
+                <span class="line"><span class="reveal"><%= words.slice(0, Math.ceil(words.length/2)).join(' ') %></span></span>
+                <span class="line"><span class="reveal"><em><%= words.slice(Math.ceil(words.length/2)).join(' ') %></em></span></span>
+              <% } else { %>
+                <span class="line"><span class="reveal"><%- data.service.title %></span></span>
+              <% } %>
+            </h1>
+          </div>
+          <p class="page-hero__lede reveal"><%= data.service.description %></p>
+        </div>
+      </section>
+
+      <!-- ========== SERVICE DETAIL ========== -->
+      <section class="serv-body">
+        <div class="serv-body__inner">
+          <aside class="serv-body__side">
+            <p class="serv-body__num"><%= data.service.number %></p>
+            <h2 class="serv-body__title"><%= data.service.title %></h2>
+          </aside>
+
+          <div>
+            <p class="serv-body__desc"><%= data.service.description %></p>
+
+            <% if ((data.service.tags||[]).length) { %>
+              <div class="serv-body__tags">
+                <% (data.service.tags||[]).forEach(tag => { %>
+                  <span class="serv-body__tag"><%= tag %></span>
+                <% }) %>
+              </div>
+            <% } %>
+
+            <a href="/contacto" class="btn btn--primary" data-cursor="pointer">
+              <span>Falar sobre este serviço</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== PROJECTS OF THIS SERVICE ========== -->
+      <% if ((data.serviceProjects||[]).length) { %>
+        <section class="serv-projects">
+          <header class="serv-projects__head">
+            <span class="section-tag"><i></i> &mdash; Trabalho realizado</span>
+            <h2 class="serv-projects__title">
+              <span class="reveal">Projetos de</span>
+              <span class="reveal"><em><%= (data.service.title||'').split(/[\s&]/)[0] %></em>.</span>
+            </h2>
+          </header>
+
+          <div class="work__grid" style="max-width:1400px;margin:0 auto">
+            <% (data.serviceProjects||[]).forEach((sp, si) => {
+                 const sizeClass = si === 0 ? ' project--lg' : (si === 3 ? ' project--wide' : '');
+                 const spSrc = !sp.image ? null
+                   : (sp.image.startsWith('http')||sp.image.startsWith('/')) ? sp.image : '/assets/'+sp.image;
+            %>
+              <a href="/projetos/<%= sp.id %>" class="project<%= sizeClass %>" data-cursor="ver" data-cursor-label="Ver projeto">
+                <div class="project__media">
+                  <% if (spSrc) { %>
+                    <div class="project__visual" style="background-image:url('<%= spSrc %>')"></div>
+                  <% } else { %>
+                    <div class="project__visual"></div>
+                  <% } %>
+                  <div class="project__overlay"></div>
+                </div>
+                <div class="project__meta">
+                  <span class="project__year"><%= sp.year %></span>
+                  <h3><%- sp.title %></h3>
+                  <% if (sp.subtitle) { %><p><%= sp.subtitle %></p><% } %>
+                  <ul class="project__tags">
+                    <% (sp.tags||[]).slice(0,3).forEach(tag => { %><li><%= tag %></li><% }) %>
+                  </ul>
+                </div>
+              </a>
+            <% }) %>
+          </div>
+
+          <div style="text-align:center;margin-top:clamp(2rem,4vw,3.5rem)">
+            <a href="/projetos" class="btn btn--ghost" data-cursor="pointer">
+              <span>Ver portfólio completo</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </section>
+      <% } %>
+
+      <!-- ========== OTHER SERVICES ========== -->
+      <% if ((data.otherServices||[]).length) { %>
+        <section class="serv-others">
+          <div style="max-width:1400px;margin:0 auto">
+            <p class="serv-others__label">Outros serviços</p>
+            <div class="serv-others__list">
+              <% (data.otherServices||[]).forEach(os => { %>
+                <a href="/servicos/<%= os.id %>" class="serv-others__link" data-cursor="pointer">
+                  <%= os.title %>
+                </a>
+              <% }) %>
+            </div>
+          </div>
+        </section>
+      <% } %>
+
+      <%- include('partials/footer') %>
+    </div>
+  </main>
+
+</body>
+</html>

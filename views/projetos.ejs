@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: 'Projetos — WEMOV Agency',
+    description: 'Portfólio selecionado de filmes, campanhas, fotografia e branding produzidos pela WEMOV.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="projetos" data-page-enter>
+
+      <section class="page-hero">
+        <div class="page-hero__inner">
+          <div class="page-hero__eyebrow">
+            <div class="page-hero__crumb">
+              <a href="/">WEMOV</a> <span>/</span> Projetos
+            </div>
+            <h1 class="page-hero__title" data-page-title>
+              <span class="line"><span class="reveal"><%- data.settings.projetos_title_line_1 %></span></span>
+              <span class="line"><span class="reveal"><%- data.settings.projetos_title_line_2 %></span></span>
+            </h1>
+          </div>
+          <p class="page-hero__lede reveal">
+            <%= data.settings.projetos_lede %>
+          </p>
+        </div>
+      </section>
+
+      <section class="work work--index">
+        <div class="work__filter">
+          <button class="is-active" data-filter="all" data-cursor="pointer">Todos</button>
+          <button data-filter="video" data-cursor="pointer">Vídeo</button>
+          <button data-filter="foto" data-cursor="pointer">Fotografia</button>
+          <button data-filter="branding" data-cursor="pointer">Branding</button>
+          <button data-filter="podcast" data-cursor="pointer">Podcast</button>
+          <button data-filter="consultoria" data-cursor="pointer">Consultoria</button>
+        </div>
+
+        <div class="work__grid">
+          <% (data.projects || []).forEach(p => {
+               const sizeClass = p.size === 'lg' ? ' project--lg' : (p.size === 'wide' ? ' project--wide' : '');
+               const src = !p.image ? null
+                         : (p.image.startsWith('http') || p.image.startsWith('/')) ? p.image
+                         : '/assets/' + p.image;
+          %>
+            <a href="/projetos/<%= p.id %>" class="project<%= sizeClass %>" data-category="<%= p.category %>" data-cursor="ver" data-cursor-label="Ver projeto">
+              <div class="project__media">
+                <% if (src) { %>
+                  <div class="project__visual" style="background-image:url('<%= src %>');"></div>
+                <% } else { %>
+                  <div class="project__visual"></div>
+                <% } %>
+                <div class="project__overlay"></div>
+              </div>
+              <div class="project__meta">
+                <span class="project__year"><%= p.year %></span>
+                <h3><%- p.title %></h3>
+                <% if (p.subtitle) { %><p><%= p.subtitle %></p><% } %>
+                <ul class="project__tags">
+                  <% (p.tags || []).forEach(tag => { %>
+                    <li><%= tag %></li>
+                  <% }) %>
+                </ul>
+              </div>
+            </a>
+          <% }) %>
+        </div>
+
+        <a href="/contacto" class="work__more btn btn--ghost" data-cursor="pointer">
+          <span>Tem um projeto em mente?</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </section>
+
+      <section class="beyond" aria-hidden="true">
+        <div class="beyond__track">
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

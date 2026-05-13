@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: 'Sobre — WEMOV Agency · Beyond Stories',
+    description: 'Somos a WEMOV Agency: criadores de experiências audiovisuais em Braga. Conheça a equipa, o manifesto e a cultura por trás de cada projeto.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="sobre" data-page-enter>
+
+      <section class="page-hero">
+        <div class="page-hero__inner">
+          <div class="page-hero__eyebrow">
+            <div class="page-hero__crumb">
+              <a href="/">WEMOV</a> <span>/</span> Sobre
+            </div>
+            <h1 class="page-hero__title" data-page-title>
+              <span class="line"><span class="reveal"><%- data.settings.sobre_title_line_1 %></span></span>
+              <span class="line"><span class="reveal"><%- data.settings.sobre_title_line_2 %></span></span>
+            </h1>
+          </div>
+          <p class="page-hero__lede reveal">
+            <%= data.settings.sobre_lede %>
+          </p>
+        </div>
+      </section>
+
+      <section class="about">
+        <div class="about__inner">
+          <aside class="about__side">
+            <span class="section-tag"><i></i> 01 &mdash; Manifesto</span>
+            <h2 class="about__small">Beyond<br/>Stories.</h2>
+          </aside>
+
+          <div class="about__body">
+            <p class="about__lede">
+              <span class="reveal-text">
+                <%- data.settings.sobre_about_lede %>
+              </span>
+            </p>
+
+            <p class="about__para">
+              <%- data.settings.sobre_about_para_1 %>
+            </p>
+
+            <p class="about__para">
+              <%- data.settings.sobre_about_para_2 %>
+            </p>
+
+            <div class="about__pillars">
+              <article class="pillar">
+                <header><span>01</span><h3><%= data.settings.sobre_pillar_1_title %></h3></header>
+                <p><%= data.settings.sobre_pillar_1_desc %></p>
+              </article>
+              <article class="pillar">
+                <header><span>02</span><h3><%= data.settings.sobre_pillar_2_title %></h3></header>
+                <p><%= data.settings.sobre_pillar_2_desc %></p>
+              </article>
+              <article class="pillar">
+                <header><span>03</span><h3><%= data.settings.sobre_pillar_3_title %></h3></header>
+                <p><%= data.settings.sobre_pillar_3_desc %></p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="manifesto">
+        <div class="manifesto__inner">
+          <p class="manifesto__lede">
+            <%- data.settings.sobre_manifesto %>
+          </p>
+          <p class="manifesto__sig"><%= data.settings.sobre_manifesto_sig %></p>
+        </div>
+      </section>
+
+      <!-- TEAM -->
+      <section class="team">
+        <header class="team__head">
+          <span class="section-tag"><i></i> 02 &mdash; Equipa</span>
+          <h2 class="team__title">
+            <span class="reveal">Os <em>criadores</em></span><br/>
+            <span class="reveal">por trás da câmara.</span>
+          </h2>
+        </header>
+        <div class="team__grid">
+          <% (data.team || []).forEach(member => { %>
+            <article class="member">
+              <div class="member__avatar member__avatar--photo">
+                <% if (member.image) { %>
+                  <% const src = member.image.startsWith('http') || member.image.startsWith('/') ? member.image : '/assets/' + member.image; %>
+                  <img src="<%= src %>" alt="<%= member.name %>, <%= member.role %> na WEMOV Agency" class="member__photo" loading="lazy" />
+                <% } %>
+              </div>
+              <h3 class="member__name"><%= member.name %></h3>
+              <p class="member__role"><%= member.role %></p>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="beyond" aria-hidden="true">
+        <div class="beyond__track">
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

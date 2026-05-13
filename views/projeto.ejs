@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: (data.project.title || '').replace(/<[^>]+>/g,'') + ' — WEMOV Agency',
+    description: data.project.description
+      ? data.project.description.slice(0,160)
+      : 'Projeto ' + (data.project.title||'').replace(/<[^>]+>/g,'') + ' · WEMOV Agency · Braga.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="projeto" data-page-enter>
+
+      <%
+        const p = data.project;
+        const src = !p.image ? null
+          : (p.image.startsWith('http') || p.image.startsWith('/')) ? p.image : '/assets/' + p.image;
+      %>
+
+      <!-- ========== CINEMATIC HERO ========== -->
+      <section class="proj-hero">
+        <div class="proj-hero__bg" <% if (src) { %>style="background-image:url('<%= src %>')"<% } %>></div>
+
+        <div class="proj-hero__inner">
+          <nav class="proj-hero__crumb" aria-label="Breadcrumb">
+            <a href="/">WEMOV</a>
+            <span>/</span>
+            <a href="/projetos">Projetos</a>
+            <span>/</span>
+            <span><%- (p.title||'').replace(/<[^>]+>/g,'') %></span>
+          </nav>
+
+          <div class="proj-hero__meta">
+            <% if (p.category) { %><span class="proj-hero__badge"><%= p.category %></span><% } %>
+            <% if (p.year)     { %><span class="proj-hero__year"><%= p.year %></span><% } %>
+          </div>
+
+          <h1 class="proj-hero__title"><%- p.title %></h1>
+          <% if (p.subtitle) { %>
+            <p class="proj-hero__subtitle"><%= p.subtitle %></p>
+          <% } %>
+        </div>
+      </section>
+
+      <!-- ========== BODY ========== -->
+      <section class="proj-body">
+
+        <aside class="proj-body__side">
+          <% if ((p.tags||[]).length || p.category) { %>
+            <div class="proj-body__tags">
+              <% if (p.category) { %>
+                <span class="proj-body__tag proj-body__tag--cat"><%= p.category %></span>
+              <% } %>
+              <% (p.tags||[]).forEach(tag => { %><span class="proj-body__tag"><%= tag %></span><% }) %>
+            </div>
+          <% } %>
+
+          <% if (p.year) { %>
+            <div class="proj-body__stat">
+              <p class="proj-body__stat-label">Ano</p>
+              <p class="proj-body__stat-val"><%= p.year %></p>
+            </div>
+          <% } %>
+
+          <% if (p.category) { %>
+            <div class="proj-body__stat">
+              <p class="proj-body__stat-label">Categoria</p>
+              <p class="proj-body__stat-val" style="text-transform:capitalize"><%= p.category %></p>
+            </div>
+          <% } %>
+
+          <div class="proj-body__cta">
+            <a href="/projetos" class="btn btn--ghost" data-cursor="pointer">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 18l-6-6 6-6"/></svg>
+              <span>Todos os projetos</span>
+            </a>
+          </div>
+        </aside>
+
+        <div class="proj-body__main">
+          <% if (p.description) { %>
+            <div class="proj-body__desc">
+              <% p.description.split('\n').filter(l => l.trim()).forEach(line => { %>
+                <p><%= line %></p>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <p class="proj-body__desc" style="color:var(--ink-3);font-style:italic;">
+              Detalhes completos deste projeto disponíveis mediante contacto.
+            </p>
+          <% } %>
+
+          <div class="proj-body__cta" style="margin-top:3rem">
+            <a href="/contacto" class="btn btn--primary" data-cursor="pointer">
+              <span>Iniciar um projeto semelhante</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========== RELATED PROJECTS ========== -->
+      <% if ((data.relatedProjects||[]).length) { %>
+        <section class="proj-related">
+          <header class="proj-related__head">
+            <h2 class="proj-related__title">
+              Projetos <em>relacionados</em>.
+            </h2>
+            <a href="/projetos" class="btn btn--ghost btn--sm" data-cursor="pointer">Ver todos</a>
+          </header>
+
+          <div class="work__grid" style="max-width:1400px;margin:0 auto">
+            <% data.relatedProjects.forEach((rp, ri) => {
+                 const cls = data.relatedProjects.length === 1 ? ' project--lg' : (ri === 0 && data.relatedProjects.length > 1 ? ' project--lg' : '');
+                 const rSrc = !rp.image ? null
+                   : (rp.image.startsWith('http')||rp.image.startsWith('/')) ? rp.image : '/assets/'+rp.image;
+            %>
+              <a href="/projetos/<%= rp.id %>" class="project<%= cls %>" data-cursor="ver" data-cursor-label="Ver projeto">
+                <div class="project__media">
+                  <% if (rSrc) { %>
+                    <div class="project__visual" style="background-image:url('<%= rSrc %>')"></div>
+                  <% } else { %>
+                    <div class="project__visual"></div>
+                  <% } %>
+                  <div class="project__overlay"></div>
+                </div>
+                <div class="project__meta">
+                  <span class="project__year"><%= rp.year %></span>
+                  <h3><%- rp.title %></h3>
+                  <% if (rp.subtitle) { %><p><%= rp.subtitle %></p><% } %>
+                  <ul class="project__tags">
+                    <% (rp.tags||[]).slice(0,3).forEach(tag => { %><li><%= tag %></li><% }) %>
+                  </ul>
+                </div>
+              </a>
+            <% }) %>
+          </div>
+        </section>
+      <% } %>
+
+      <%- include('partials/footer') %>
+    </div>
+  </main>
+
+</body>
+</html>

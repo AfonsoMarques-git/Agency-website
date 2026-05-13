@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: 'Serviços — WEMOV Agency · Produção, Branding e Consultoria',
+    description: 'Produção audiovisual, fotografia, vídeo profissional, podcast, branding, marketing digital e consultoria criativa em Braga. Ecossistema completo de criação.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="servicos" data-page-enter>
+
+      <section class="page-hero">
+        <div class="page-hero__inner">
+          <div class="page-hero__eyebrow">
+            <div class="page-hero__crumb">
+              <a href="/">WEMOV</a> <span>/</span> Serviços
+            </div>
+            <h1 class="page-hero__title" data-page-title>
+              <span class="line"><span class="reveal"><%- data.settings.servicos_title_line_1 %></span></span>
+              <span class="line"><span class="reveal"><%- data.settings.servicos_title_line_2 %></span></span>
+            </h1>
+          </div>
+          <p class="page-hero__lede reveal">
+            <%= data.settings.servicos_lede %>
+          </p>
+        </div>
+      </section>
+
+      <section class="services services--page">
+        <ol class="services__list">
+          <% (data.services || []).forEach(service => { %>
+            <li class="service" data-num="<%= service.number %>">
+              <a href="/servicos/<%= service.id %>" class="service__inner" data-cursor="pointer">
+                <span class="service__num"><%= service.number %></span>
+                <h3 class="service__title"><%= service.title %></h3>
+                <p class="service__desc"><%= service.description %></p>
+                <div class="service__tags">
+                  <% (service.tags || []).forEach(tag => { %>
+                    <span><%= tag %></span>
+                  <% }) %>
+                </div>
+                <span class="service__arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </li>
+          <% }) %>
+        </ol>
+      </section>
+
+      <section class="press">
+        <header class="press__head">
+          <span class="section-tag"><i></i> &mdash; Testemunhos</span>
+          <h2 class="press__title">
+            <span class="reveal">O que dizem</span>
+            <span class="reveal">de <em>trabalhar</em> connosco.</span>
+          </h2>
+        </header>
+
+        <div class="press__grid">
+          <% (data.testimonials || []).forEach(t => { %>
+            <figure class="quote">
+              <blockquote>
+                <span class="quote__mark">&ldquo;</span>
+                <%= t.quote %>
+              </blockquote>
+              <figcaption>
+                <strong><%= t.author %></strong>
+                <% if (t.company) { %><span><%= t.company %></span><% } %>
+              </figcaption>
+            </figure>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="beyond" aria-hidden="true">
+        <div class="beyond__track">
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: 'Estúdio de Podcast — WEMOV Agency',
+    description: 'Estúdio próprio de podcast em Braga: áudio multi-canal, vídeo multi-câmara 4K, edição e distribuição multi-plataforma.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="podcast" data-page-enter>
+
+      <section class="page-hero">
+        <div class="page-hero__inner">
+          <div class="page-hero__eyebrow">
+            <div class="page-hero__crumb">
+              <a href="/">WEMOV</a> <span>/</span> Estúdio
+            </div>
+            <h1 class="page-hero__title" data-page-title>
+              <span class="line"><span class="reveal"><%- data.settings.podcast_title_line_1 %></span></span>
+              <span class="line"><span class="reveal"><%- data.settings.podcast_title_line_2 %></span></span>
+            </h1>
+          </div>
+          <p class="page-hero__lede reveal">
+            <%= data.settings.podcast_lede %>
+          </p>
+        </div>
+      </section>
+
+      <section class="studio">
+        <div class="studio__inner">
+          <div class="studio__visual studio__visual--photo" aria-hidden="true">
+            <div class="studio__frame">
+              <div class="studio__mic">
+                <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+                <div class="studio__mic-body">
+                  <div class="studio__mic-grille"></div>
+                </div>
+                <div class="studio__mic-stand"></div>
+              </div>
+              <div class="studio__wave">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="studio__hud">
+                <div><span>IN&nbsp;01</span><i></i></div>
+                <div><span>IN&nbsp;02</span><i></i></div>
+                <div><span>REC</span><i class="rec"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="studio__body">
+            <span class="section-tag"><i></i> &mdash; O novo mercado audiovisual</span>
+            <h2 class="studio__title">
+              <span class="reveal"><%- data.settings.podcast_studio_title_1 %></span>
+              <span class="reveal"><%- data.settings.podcast_studio_title_2 %></span>
+            </h2>
+            <p class="studio__lede">
+              <%= data.settings.podcast_studio_lede %>
+            </p>
+            <ul class="studio__list">
+              <li><span>—</span> <%= data.settings.podcast_feature_1 %></li>
+              <li><span>—</span> <%= data.settings.podcast_feature_2 %></li>
+              <li><span>—</span> <%= data.settings.podcast_feature_3 %></li>
+              <li><span>—</span> <%= data.settings.podcast_feature_4 %></li>
+              <li><span>—</span> <%= data.settings.podcast_feature_5 %></li>
+              <li><span>—</span> <%= data.settings.podcast_feature_6 %></li>
+            </ul>
+            <a href="/contacto" class="btn btn--primary" data-cursor="pointer">
+              <span>Reservar o estúdio</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="work">
+        <header class="work__head">
+          <span class="section-tag"><i></i> &mdash; WETALK Episódios</span>
+          <h2 class="work__title">
+            <span class="reveal">Conversas <em>sem</em></span>
+            <span class="reveal">filtros.</span>
+          </h2>
+        </header>
+
+        <div class="work__grid">
+          <% (data.episodes || []).forEach(ep => {
+               const sizeClass = ep.size === 'lg' ? ' project--lg' : (ep.size === 'wide' ? ' project--wide' : '');
+               const src = !ep.image ? null
+                         : (ep.image.startsWith('http') || ep.image.startsWith('/')) ? ep.image
+                         : '/assets/' + ep.image;
+          %>
+            <article class="project<%= sizeClass %>" data-cursor="ver" data-cursor-label="Ver episódio">
+              <div class="project__media">
+                <% if (src) { %>
+                  <div class="project__visual" style="background-image:url('<%= src %>');"></div>
+                <% } else { %>
+                  <div class="project__visual"></div>
+                <% } %>
+                <div class="project__overlay"></div>
+              </div>
+              <div class="project__meta">
+                <span class="project__year"><%= ep.number %></span>
+                <h3><%- ep.title %></h3>
+                <% if (ep.subtitle) { %><p><%= ep.subtitle %></p><% } %>
+                <ul class="project__tags">
+                  <% (ep.tags || []).forEach(tag => { %>
+                    <li><%= tag %></li>
+                  <% }) %>
+                </ul>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="beyond" aria-hidden="true">
+        <div class="beyond__track">
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

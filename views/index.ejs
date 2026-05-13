@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: 'WEMOV Agency — Beyond Stories · Produção Audiovisual, Branding e Consultoria Criativa',
+    description: 'A sua narrativa é autêntica. Produção Audiovisual, Branding, Fotografia, Podcast e Consultoria Criativa em Braga. Beyond Stories.',
+    ogTitle: 'WEMOV Agency — Beyond Stories'
+  }) %>
+</head>
+<body>
+
+  <%- include('partials/shell') %>
+
+  <!-- ============= LOADER (only present on home) ============= -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <div class="loader__mark">
+        <span class="loader__char">W</span><span class="loader__char">E</span><span class="loader__char">M</span><span class="loader__char">O</span><span class="loader__char">V</span>
+      </div>
+      <div class="loader__bar"><span></span></div>
+      <div class="loader__meta">
+        <span><%= data.settings.brand_tagline.toUpperCase() %></span>
+        <span class="loader__count">000</span>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/nav') %>
+
+  <main id="top" data-barba="wrapper">
+    <div data-barba="container" data-barba-namespace="home" data-page-enter>
+
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="hero__bg" aria-hidden="true">
+          <div class="hero__orb hero__orb--1"></div>
+          <div class="hero__orb hero__orb--2"></div>
+          <div class="hero__grid"></div>
+        </div>
+
+        <div class="hero__ticker" aria-hidden="true">
+          <div class="ticker__track">
+            <span>BEYOND&nbsp;STORIES</span><span class="dot">&bull;</span>
+            <span>PRODUÇÃO&nbsp;AUDIOVISUAL</span><span class="dot">&bull;</span>
+            <span>BRANDING</span><span class="dot">&bull;</span>
+            <span>CONSULTORIA&nbsp;CRIATIVA</span><span class="dot">&bull;</span>
+            <span>EST.&nbsp;BRAGA</span><span class="dot">&bull;</span>
+            <span>BEYOND&nbsp;STORIES</span><span class="dot">&bull;</span>
+            <span>PRODUÇÃO&nbsp;AUDIOVISUAL</span><span class="dot">&bull;</span>
+            <span>BRANDING</span><span class="dot">&bull;</span>
+            <span>CONSULTORIA&nbsp;CRIATIVA</span><span class="dot">&bull;</span>
+            <span>EST.&nbsp;BRAGA</span><span class="dot">&bull;</span>
+          </div>
+        </div>
+
+        <div class="hero__content">
+          <div class="hero__eyebrow">
+            <span class="hero__pill">
+              <span class="pulse"></span> <%= data.settings.hero_pill %>
+            </span>
+          </div>
+
+          <h1 class="hero__title">
+            <span class="line"><span class="reveal"><%- data.settings.hero_line_1 %></span></span>
+            <span class="line"><span class="reveal"><%- data.settings.hero_line_2 %></span></span>
+            <span class="line"><span class="reveal"><%- data.settings.hero_line_3 %></span></span>
+          </h1>
+
+          <div class="hero__meta">
+            <p class="hero__lede">
+              <%= data.settings.hero_lede %>
+            </p>
+
+            <div class="hero__actions">
+              <a href="/projetos" class="btn btn--primary" data-cursor="ver" data-cursor-label="Ver">
+                <span>Explorar projetos</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a href="/contacto" class="btn btn--ghost" data-cursor="pointer">
+                <span>Iniciar conversa</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__stats">
+            <div class="stat">
+              <span class="stat__num" data-count="<%= data.settings.stat_projects %>"><%= data.settings.stat_projects %></span><span class="stat__plus">+</span>
+              <span class="stat__label"><%- data.settings.stat_projects_label %></span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="<%= data.settings.stat_brands %>"><%= data.settings.stat_brands %></span>
+              <span class="stat__label"><%- data.settings.stat_brands_label %></span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="<%= data.settings.stat_years %>"><%= data.settings.stat_years %></span>
+              <span class="stat__label"><%- data.settings.stat_years_label %></span>
+            </div>
+            <div class="stat">
+              <span class="stat__num">&infin;</span>
+              <span class="stat__label"><%- data.settings.stat_ideas_label %></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <div class="hero__scroll-line"><span></span></div>
+        </div>
+
+        <div class="hero__corner hero__corner--tl"><%= data.settings.hero_corner_tl %></div>
+        <div class="hero__corner hero__corner--tr">REC &bull; <span id="clock">00:00:00</span></div>
+        <div class="hero__corner hero__corner--bl"><%= data.settings.hero_corner_bl %></div>
+        <div class="hero__corner hero__corner--br"><%= data.settings.hero_corner_br %></div>
+      </section>
+
+      <!-- MARQUEE — CLIENTS -->
+      <section class="marquee" aria-label="Clientes & parceiros">
+        <div class="marquee__label">
+          <span class="pulse"></span> Confiam em nós
+        </div>
+        <div class="marquee__track">
+          <div class="marquee__row">
+            <% const clients = (data.settings.clients_list || '').split('|').filter(Boolean); %>
+            <% for (let i = 0; i < 2; i++) { %>
+              <% clients.forEach((c, idx) => { %>
+                <span><%= c %></span><span class="sep">&divide;</span>
+              <% }) %>
+            <% } %>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT — TEASER -->
+      <section class="about" id="sobre">
+        <div class="about__inner">
+          <aside class="about__side">
+            <span class="section-tag"><i></i> 01 &mdash; Sobre</span>
+            <h2 class="about__small">Somos a<br/>WEMOV Agency.</h2>
+          </aside>
+
+          <div class="about__body">
+            <p class="about__lede">
+              <span class="reveal-text">
+                <%- data.settings.home_about_lede %>
+              </span>
+            </p>
+
+            <p class="about__para">
+              <%- data.settings.home_about_para %>
+            </p>
+
+            <a href="/sobre" class="btn btn--ghost" data-cursor="pointer">
+              <span>Conhecer a agência</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- BIG CTA -->
+      <section class="beyond" aria-hidden="true">
+        <div class="beyond__track">
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+          <span>Beyond&nbsp;Stories</span>
+          <span class="dot">&bull;</span>
+          <span><em>Beyond&nbsp;Stories</em></span>
+          <span class="dot">&bull;</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

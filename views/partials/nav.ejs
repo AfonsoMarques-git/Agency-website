@@ -1,0 +1,36 @@
+<header class="nav" id="nav">
+  <a href="/" class="nav__logo" data-cursor="pointer" aria-label="WEMOV Agency — voltar ao início">
+    <img src="/assets/logo-wemov.png" alt="WEMOV Agency" class="nav__logo-img" />
+  </a>
+
+  <nav class="nav__links" aria-label="Principal">
+    <a href="/sobre" data-cursor="pointer"><span>01.</span> Sobre</a>
+    <a href="/servicos" data-cursor="pointer"><span>02.</span> Serviços</a>
+    <a href="/projetos" data-cursor="pointer"><span>03.</span> Projetos</a>
+    <a href="/podcast" data-cursor="pointer"><span>04.</span> Estúdio</a>
+    <a href="/contacto" data-cursor="pointer"><span>05.</span> Contacto</a>
+  </nav>
+
+  <a href="/contacto" class="nav__cta" data-cursor="pointer">
+    <span>Iniciar Projeto</span>
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+
+  <button class="nav__burger" id="burger" aria-label="Menu" data-cursor="pointer">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav>
+    <a href="/sobre"><span>01</span> Sobre</a>
+    <a href="/servicos"><span>02</span> Serviços</a>
+    <a href="/projetos"><span>03</span> Projetos</a>
+    <a href="/podcast"><span>04</span> Estúdio</a>
+    <a href="/contacto"><span>05</span> Contacto</a>
+  </nav>
+  <div class="mobile-menu__foot">
+    <a href="mailto:<%= data.settings.contact_email %>"><%= data.settings.contact_email %></a>
+    <a href="tel:<%= data.settings.contact_phone_tel %>"><%= data.settings.contact_phone_label %></a>
+  </div>
+</div>

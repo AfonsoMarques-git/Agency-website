@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <%- include('partials/head', {
+    title: '500 — Erro interno · WEMOV Agency',
+    description: 'Algo correu mal no servidor.'
+  }) %>
+</head>
+<body class="is-loaded">
+
+  <%- include('partials/shell') %>
+  <%- include('partials/nav') %>
+
+  <main id="top">
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-hero__eyebrow">
+          <div class="page-hero__crumb">
+            <a href="/">WEMOV</a> <span>/</span> 500
+          </div>
+          <h1 class="page-hero__title">
+            <span class="line"><span class="reveal">Houve um <em>glitch</em>.</span></span>
+            <span class="line"><span class="reveal">500.</span></span>
+          </h1>
+        </div>
+        <p class="page-hero__lede">Algo correu mal do nosso lado. Tente recarregar a página dentro de momentos.</p>
+        <div class="hero__actions" style="margin-top:2.5rem;">
+          <a href="/" class="btn btn--primary" data-cursor="pointer">
+            <span>Voltar ao início</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
